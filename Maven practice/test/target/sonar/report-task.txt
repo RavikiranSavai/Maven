@@ -1,0 +1,6 @@
+projectKey=skillrary:test
+serverUrl=http://localhost:9000
+serverVersion=8.9.0.43852
+dashboardUrl=http://localhost:9000/dashboard?id=skillrary%3Atest
+ceTaskId=AXlvoMNwj1yXoqkzPV49
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXlvoMNwj1yXoqkzPV49

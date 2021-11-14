@@ -1,0 +1,112 @@
+#!/bin/bash
+sudo su
+yum update -y
+yum install httpd -y
+service httpd start
+chkconfig httpd on 
+yum install amazon-efs-utils -y
+
+mount -t efs -o tls fs-44708c3f:/ /var/www/html
+
+
+fs-44708c3f
+
+
+C:\ProgramData\Oracle\Java\javapath
+
+
+pipeline {
+         agent any
+         stages {
+                 stage('One') {
+                 steps {
+                     echo 'Hi, this is Zulaikha from edureka'
+                 }
+                 }
+                 stage('Two') {
+                 steps {
+                    input('Do you want to proceed?')
+                 }
+                 }
+                 stage('Three') {
+                 when {
+                       not {
+                            branch "master"
+                       }
+                 }
+                 steps {
+                       echo "Hello"
+                 }
+                 }
+                 stage('Four') {
+                 parallel { 
+                            stage('Unit Test') {
+                           steps {
+                                echo "Running the unit test..."
+                           }
+                           }
+                            stage('Integration test') {
+                              agent {
+                                    docker {
+                                            reuseNode true
+                                            image 'ubuntu'
+                                           }
+                                    }
+                              steps {
+                                echo "Running the integration test..."
+                              }
+                           }
+                           }
+                           }
+              }
+}
+
+
+[root@ip-172-31-23-130 cookbooks]# vi test-cookbook/recipes/recipe1.rb
+#
+# Cookbook:: test-cookbook
+# Recipe:: recipe1
+#
+# Copyright:: 2021, The Authors, All Rights Reserved.
+pakage `tree` do
+action :install
+end
+
+file `myfile2` do
+content `second pro`
+action :create
+owner :root
+end
+
+
+
+#
+# Cookbook:: test-cookbook
+# Recipe:: recipe1
+#
+# Copyright:: 2021, The Authors, All Rights Reserved.
+pakege 'http' do
+action :install
+end
+file '/var/www/html/index.html' do
+content 'RK'
+action :create
+end
+service 'httpd' do 
+action[:enable, :start}
+end
+
+===================================================
+package 'httpd' do
+  action :install
+end
+ 
+file '/var/www/html/index.html' do
+  content "RK Savai"
+  action :create
+end
+ 
+service 'httpd' do
+  action [ :enable, :start ]
+end
+======================================================

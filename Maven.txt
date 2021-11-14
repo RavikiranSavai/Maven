@@ -1,0 +1,239 @@
+
+maven: is a dependancy management and a build automation tool primarly used for java aplication
+
+set PATH="c:\program files\apache-maven-3.8.1\bin";%PATH%	
+
+pre-requisite:
+jdk
+maven package from internet
+set environment variable path MAVEN_HOME
+
+  maven will helps us to do below:
+  -------------------------------
+  
+  configure
+  downloading the src code
+  initialization
+  compile
+  package
+  unit test
+  deployment
+  document
+  reports
+  clean
+  dependancy management
+  -------------------------------  
+ maven can do variety of tasks
+ 1. compiling source code
+ 2. packaging binaries
+ 3. running automated test
+ 4. deploying to system
+ 5. creating documents
+ 
+ based on pom(project object model) maven can manage
+ project build ,reporting and documentation
+ 
+ java build automation tools:
+ 
+ 1.Ant 
+ 2.maven
+ 3.gradle
+ 
+	mvn help:effective-pom
+	
+	continous integration and devops tools setup and tips
+	https://www.cidevops.com/
+	
+
+
+https://maven.apache.org/pom.html
+
+
+how to run maven in cmd
+cmd---> mvn archetype:generate
+generated project in C:\Users\Alex\dev
+
+portno: 8888
+mvn compile
+mvn test
+mvn package
+mvn install
+mvn clean
+mvn site
+	
+
+
+TO DEPLOY PROJECT FROM MAVEN TO TOMCAT USE BELOW COMMAMDS	
+mvn tomcat7:deploy
+mvn tomcat7:undeploy
+mvn tomcat7:redeploy
+
+https://github.com/skillrary/maven-helloworld
+
+
+
+<project>
+ 
+ <groupid>skillrary</groupid>
+ <artifactID>test</artifactID>
+ <version>1.1</version>
+ <packaging>jar</packaging>
+ 
+ <description>This is a test project </description>
+ <name>PilotProject</name>
+ 
+ 
+ <properties></properties>
+ 
+ 
+ <dependencies>
+  <dependency>
+   <groupid>skillrary</groupid>
+   <artifactID>test1</artifactID>
+   <version>1.1</version>
+  </dependecy>
+  
+  <dependency>
+      <groupid>skillrary</groupid>
+   <artifactID>test2</artifactID>
+   <version>1.1</version>
+  </dependecy>
+  
+ </dependencies>
+ 
+ 
+ <build>
+  <plugins>
+   <plugin>
+    #What is this plugin -- Define -- GAV
+     <groupid>skillrary</groupid>
+     <artifactID>projectx</artifactID>
+     <version>1.8</version>
+     
+    <executions>
+     <execution>
+      #When should i use this plugin -- TEST, COMPILE
+      <phase>compile</phase>
+       <configuration>
+         #What does this plugin do  -- Executes/Performs
+         <goals><task></task>< </goals>
+       </configuration>  
+     </execution> 
+    
+    </executions>
+    
+   </plugin>
+   
+   <plugin>
+   </plugin>
+
+   <plugin>
+   </plugin>   
+  </plugins>
+ </build>
+</project>
+
+
+
+
+NOW FROM MAVEN HOW TO CONNECT FOR JACOCO------>THIS IS USED FOR MAVEN CODE COVERAGE
+> FOR THIS WE HAVE TO PUT MAVEN JACOCOC PLUGIN NSIDE POM.XML FILE
+NOW PASTE THE BELOW PLUGIN TO POM AND IN CMD TYPE MVN TEST.
+
+<plugin>
+   <groupId>org.jacoco</groupId>
+   <artifactId>jacoco-maven-plugin</artifactId>
+   <version>0.7.6.201602180812</version>
+   <executions>
+     <execution>
+       <id>prepare-agent</id>
+       <goals>
+          <goal>prepare-agent</goal>
+       </goals>  
+       <configuration>
+          <propertyName>jaCoCoArgLine</propertyName>
+       </configuration>
+     </execution>
+     <execution>
+       <id>post-unit-test</id>
+       <phase>test</phase>
+       <goals>
+          <goal>report</goal>
+       </goals>
+     </execution>
+   </executions>
+</plugin>
+
+
+
+TOMCAT-MAVEN PLUGIN:
+---------------------
+ <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+		<configuration>
+		  <url>http://localhost:8080/manager/text</url>
+		  <username>admin</username>
+		  <password>admin</password>
+		</configuration> 
+        </plugin>
+
+
+
+
+SONARQUBE:
+----------
+
+TO UPLOAD PROJECT FROM MAVEN TO SONARQUBE FIRST DOWNLOAD PLUGIN 
+AND THIS COMMAND IS USE TO DEPLOY
+
+plugin:
+ <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.3-SNAPSHOT</version>
+      </plugin>
+	  
+mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=mithun
+
+TO STOP -> CTRL+C
+
+
+
+MAVEN MULTI PROJECT :
+
+FIRST CREATE ONE FOLDER EXAMPLE LIKE MULTI INDISE MULTI
+PLACE TWO OR MORE PROJECTS BY MANUALLY OR BU USING
+MVN ARCHETYPE:GENERATE , PROJECT NAME ARE PROJECT1 AND PROJECT2 INSIDE THIS PROJECT
+WE HAVE POM BUT NOW U HAVE COMBINE THIS 2 PROJECT CREATE LIKE WHEN U OPEN 
+MULTI FOLDER==U HAVE PROJECT1
+                     PROJECT2
+NOW CREATE POM FILE  BELOW PROJECT1 AND PROJECT2 NOW IT LOOK LIKE
+MULTI--> PROJECT1
+         PROJECT2
+		 POM.XML-->INSIDE THIS WRITE MODULE PART <modules>
+		                                       <module>project1<module>
+											   <module>project2<module>
+											   </modules> and below GAV wrile
+											   <packaging>pom</packaging>
+
+now open project1-->pom-->write <parent>
+                                here u write
+								gav of multi
+								pom file 
+								</parent>
+
+
+now open project2-->pom-->write <parent>
+                                here u write
+								gav of multi
+								pom file 
+								</parent>
+								
+				NOW TYPE FROM MULTI ---> mvn compile 
+				                         mvn test
+										 which command u want
+										 
+								
+											   
